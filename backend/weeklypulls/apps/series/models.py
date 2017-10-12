@@ -9,15 +9,16 @@ from weeklypulls.apps.marvel.models import DjangoCache
 
 
 class Series(models.Model):
-    series_id = models.IntegerField()
+    series_id = models.IntegerField(unique=True)
     read = ArrayField(models.IntegerField(), default=list)
     skipped = ArrayField(models.IntegerField(), default=list)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "series"
 
     def __str__(self):
-        return 'Series: {}'.format(self.series_id)
+        return '{} ({})'.format(self.api['title'], self.series_id)
 
     @property
     def api(self):

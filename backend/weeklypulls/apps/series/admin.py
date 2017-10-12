@@ -3,6 +3,8 @@ from weeklypulls.apps.series.models import Series
 
 
 class SeriesAdmin(admin.ModelAdmin):
-    fields = ('series_id', )
+    fields = ('series_id',)
+    ordering = ('series_id',)
+
 
 admin.site.register(Series, SeriesAdmin)
