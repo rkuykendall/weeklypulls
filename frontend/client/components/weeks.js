@@ -19,7 +19,7 @@ class Week extends Component {
   }
 
   defaultMinimized () {
-    const futureWeek = utils.farFuture(this.props.week)
+    const futureWeek = utils.future(this.props.week)
       , allRead = !this.props.comics.some(comics => !(comics.read || comics.skipped));
 
     return futureWeek || allRead;

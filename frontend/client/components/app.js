@@ -10,20 +10,30 @@ import Weeks from './weeks';
 @autobind
 @observer
 class App extends Component {
-  render () {
+  renderWeeks () {
     const {
       store,
     } = this.props;
 
     return (
-      <div className={store.isLoading.get('app') ? 'loading' : ''}>
+      <div class="weeks">
         <h1>Weeks</h1>
         <Weeks
           store={store}
           mark={store.mark}
           series={store.series.values()}
         />
+      </div>
+    );
+  }
 
+  renderSeries () {
+    const {
+      store,
+    } = this.props;
+
+    return (
+      <div class="series">
         <h1>Series</h1>
         {_.sortBy(store.series.values(), 'api.title').map(series => (
           <Series
@@ -33,6 +43,19 @@ class App extends Component {
             store={store}
           />
         ))}
+      </div>
+    );
+  }
+
+  render () {
+    const {
+      store,
+    } = this.props;
+
+    // {this.renderSeries()}
+    return (
+      <div className={store.isLoading.get('app') ? 'loading' : ''}>
+        {this.renderWeeks()}
       </div>
     );
   }

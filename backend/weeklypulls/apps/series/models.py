@@ -18,7 +18,10 @@ class Series(models.Model):
         verbose_name_plural = "series"
 
     def __str__(self):
-        return '{} ({})'.format(self.api['title'], self.series_id)
+        try:
+            return '{} ({})'.format(self.api['title'], self.series_id)
+        except Exception:
+            return 'Series {} (api error)'.format(self.series_id)
 
     @property
     def api(self):
